@@ -32,12 +32,14 @@ class View(QWidget):
         self.buffer = buffer
 
         # Init widget attributes.
-        if get_emacs_func_result("eaf-emacs-running-in-wayland-native", []):
-            self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.BypassWindowManagerHint)
-        elif get_emacs_func_result("eaf-emacs-not-use-reparent-technology", []):
-            self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.NoDropShadowWindowHint)
-        else:
-            self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        # if get_emacs_func_result("eaf-emacs-running-in-wayland-native", []):
+            # self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.BypassWindowManagerHint)
+        # elif get_emacs_func_result("eaf-emacs-not-use-reparent-technology", []):
+            # self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.NoDropShadowWindowHint)
+        # else:
+            # self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.NoDropShadowWindowHint)
 
         self.setAttribute(Qt.WidgetAttribute.WA_X11DoNotAcceptFocus, True)
         self.setContentsMargins(0, 0, 0, 0)

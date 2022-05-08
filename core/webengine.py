@@ -464,12 +464,13 @@ class BrowserView(QWebEngineView):
     @interactive
     def scroll_up_page(self):
         ''' Scroll page up.'''
-        self.scroll_wheel(0, -self.rect().height())
+        self.eval_js("window.scrollBy({top: 300, left: 0, behavior: 'smooth'})")
+        # self.scroll_wheel(0, -self.rect().height())
 
     @interactive(insert_or_do=True)
     def scroll_down_page(self):
         ''' Scroll down a page.'''
-        self.scroll_wheel(0, self.rect().height())
+        # self.scroll_wheel(0, self.rect().height())
 
     @interactive(insert_or_do=True)
     def scroll_to_begin(self):
@@ -877,6 +878,8 @@ class BrowserBuffer(Buffer):
         self.channel = QWebChannel()
         self.channel.registerObject("pyobject", self)
         self.buffer_widget.web_page.setWebChannel(self.channel)
+
+        self.settings.setAttribute(QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
     def add_widget(self, widget):
         super(BrowserBuffer, self).add_widget(widget)
