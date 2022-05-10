@@ -497,8 +497,8 @@ class FetchMarkerInputThread(QThread):
                 eval_in_emacs('exit-minibuffer', [])
                 message_to_emacs("Marker selected.")
 
-            import time
-            time.sleep(0.1)
+            #import time
+            #time.sleep(0.1)
 
 class FetchSearchInputThread(QThread):
 

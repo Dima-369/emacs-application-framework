@@ -464,13 +464,12 @@ class BrowserView(QWebEngineView):
     @interactive
     def scroll_up_page(self):
         ''' Scroll page up.'''
-        self.eval_js("window.scrollBy({top: 300, left: 0, behavior: 'smooth'})")
-        # self.scroll_wheel(0, -self.rect().height())
+        self.scroll_wheel(0, -self.rect().height())
 
     @interactive(insert_or_do=True)
     def scroll_down_page(self):
         ''' Scroll down a page.'''
-        # self.scroll_wheel(0, self.rect().height())
+        self.scroll_wheel(0, self.rect().height())
 
     @interactive(insert_or_do=True)
     def scroll_to_begin(self):
@@ -599,6 +598,7 @@ class BrowserView(QWebEngineView):
         link = self.execute_js("Marker.gotoMarker('%s', Marker.getMarkerAction)" % str(marker))
         self.cleanup_links_dom()
         if link is None or type(link).__name__ == "QVariant" or link.startswith("eaf::"):
+            eval_in_emacs('dima-eaf-on-focus-in', [self.buffer.is_focus()])
             return False
         else:
             return link
